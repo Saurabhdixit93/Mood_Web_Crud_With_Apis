@@ -1,0 +1,33 @@
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        Mood Web
+      </a>
+  
+      <!-- Hamburger menu for mobile -->
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <!-- Navigation links -->
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a>
+        <% if(locals.user){%>
+            <a class="navbar-item" href="/mood/all-moods">Moods</a>
+            <a class="navbar-item" href="/logout">Logout</a>
+            
+        <%}%>
+        <% if(!locals.user){%>
+            <a class="navbar-item" href="/register">Register</a>
+            <a class="navbar-item" href="/login">Login</a>
+        <%}%>
+      </div>
+    </div>
+</nav>

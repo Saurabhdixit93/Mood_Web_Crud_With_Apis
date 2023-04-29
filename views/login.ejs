@@ -1,0 +1,128 @@
+
+  <title>User Login</title>
+  <script
+    src="https://kit.fontawesome.com/f0918ba8b4.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <style>
+    .alert {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    .alert.error {
+      background-color: #f44336;
+      color: #fff;
+      border-color: #f5c6cb;
+    }
+    .alert-danger{
+      background-color: #f44336;
+      color: #fff;
+      border-color: #f5c6cb;
+    }
+    .alert[role="alert"] {
+      margin: 0;
+      border-radius: 0;
+      border-width: 0 0 1px 0;
+    }
+    .alert-success{
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .forgot-password-button {
+      background-color: transparent;
+      border: none;
+      color: #00d1b2;
+      cursor: pointer;
+      font-size: 1.2rem;
+      text-decoration: underline;
+      margin-top: 1rem;
+      transition: color 0.3s ease-in-out;
+    }
+    .forgot-password-button:hover {
+      color: #009e86;
+    }
+</style>
+<body>
+<section class="section">
+    <% if (message.error) { %>
+      <div class="alert alert-danger" id="alert-message" role="alert">
+        <%= message.error[0] %>
+      </div>
+    <% } %>
+    <% if (errors.length > 0) { %>
+      <div class="alert error" id="alert-message">
+      <% errors.forEach(function(error) { %>
+      <p><%= error.msg %></p>
+      <% }); %>
+      </div>
+  <% } %>
+  <% if ( typeof req.query.msg !=='undefined') { %>
+    <div class="alert error" id="alert-message">
+    <p><%= req.query.msg%></p>
+    </div>
+  <% } %>
+  <div class="container" style="min-height: 60vh;">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <h1 class="title has-text-centered">Login</h1>
+        <form action="/user/login" method="POST">
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+                value="<%= typeof email != 'undefined' ? email : '' %>"
+                required
+              />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="password"
+                placeholder="Enter your password"
+                name="password"
+                value="<%= typeof password != 'undefined' ? password : '' %>"
+                
+              />
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="submit">
+                Login
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="field">
+          <button class="forgot-password-button" type="button" onclick="window.location.href='/user/reset-password-form'">Forgot Password?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+
+<script>
+  setTimeout(()=>{
+    document.getElementById('alert-message').style.display = 'none';
+  },8000);
+</script>

@@ -1,92 +1,268 @@
-# MOOD_APIS
+# How to Use Project 
+
+  1. Clone the repository to your local machine And Should be nodeJs Installed In Your Local Machine.
+  2. Navigate to the project directory in your terminal  
+  3. Create a .env file in the root directory of the project, and add the following environment  variables:
+        `PORT=3000`
+        `JWT_SECRET=your_jwt_secret_key`
+        `MONGO_URL=your_mongodb_url`
+        `SMTP_HOST`
+        `SMTP_PORT`
+        `SECURE_SMTP`
+        `SMTP_USER_EMAIL`
+        `SMTP_USER_PASSWORD`
+        `SMTP_FROM_EMAIL`
+   Replace your_jwt_secret_key and MONGO_URL with your own secret key that will be used to sign and verify JWT tokens.
+  4. Run the command `npm install` to install all dependencies required for the project.
+  5. Run the command `npm start` to start the server.
+
+  6. You can now use a tool like _Postman_ to test the API endpoints. 
+  
+  <br>
+  
+# API ENDPOINT
+
+* Overall Methods And HTTP Requests
+
+> For Auth And Moods APIs
+------------------------------------------------------------------------------------------------
+| Endpoint                   | HTTP   | Description                                             |
+|----------------------------|--------|---------------------------------------------------------|
+| /api/v1/auth/register      | POST   | Register a new user with email and password and name    |
+| /api/v1/auth/login         | POST   | Authenticate a user and return JWT token                |
+| /api/v1/create-mood        | POST   | Create a new mood for authenticated user                |
+| /api/v1/all-moods          | GET    | Get all moods for authenticated user                    |
+| /api/v1/delete-mood/:id    | DELETE | Delete a mood with the specified ID for a user          |
+-------------------------------------------------------------------------------------------------
+
+
+# Authentication Routes
+
+- Register
+
+  * URL:            `http://localhost:5000/api/v1/auth/register`,
+  * Method:         `POST`
+  * Request Body: 
+
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |   TYPE   |  REQUIRED |                            DESCRIPTION                    |
+-------------------------------------------------------------------------------------------------
+   email     | String   |  yes      |             User Email                                    |
+
+   name      | String   |  yes      |             User Name                                     |
+   
+   password  | String   |  yes      |             User Password                                 |
+-------------------------------------------------------------------------------------------------
+
+
+  * Response Body (Success(200 OK)):
+
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+
+-------------------------------------------------------------------------------------------------
+   token     |      String        |                 Token_this_is                               |
+
+   message   |      String        |         Succesfull Register , this is your token            |
+-------------------------------------------------------------------------------------------------
+
+
+  * Response Body (Error):
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+
+-------------------------------------------------------------------------------------------------
+
+   error     |      String        |    Error Message describing Why The Request Failed          |
+-------------------------------------------------------------------------------------------------
+ 
+ <br>
+
+- Login 
+  
+   * URL:        `http://localhost:5000/api/v1/auth/login`,
+   * Method:      ``POST`
+   * Request Body: 
 
 
 
-## Getting started
+-------------------------------------------------------------------------------------------------
+   PARAMETER |   TYPE   |  REQUIRED |                            DESCRIPTION                    |
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+-------------------------------------------------------------------------------------------------
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+   email     | String   |  yes      |             User Email                                    |
 
-## Add your files
+   name      | String   |  yes      |             User Name                                     |
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+   password  | String   |  yes      |             User Password                                 |
+-------------------------------------------------------------------------------------------------
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/saurabh-dixit1/mood_apis.git
-git branch -M main
-git push -uf origin main
-```
+  * Response Body (Success(200 OK)):
 
-## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/saurabh-dixit1/mood_apis/-/settings/integrations)
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
 
-## Collaborate with your team
+-------------------------------------------------------------------------------------------------
+   token     |      String        |                 Token_this_is                               |
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+   message   |      String        |         Succesfull Login , this is your token               |
+-------------------------------------------------------------------------------------------------
 
-## Test and Deploy
 
-Use the built-in continuous integration in GitLab.
+  * Response Body (Error):
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
 
-***
+-------------------------------------------------------------------------------------------------
 
-# Editing this README
+   error     |      String        |    Error Message describing Why The Request Failed          |
+-------------------------------------------------------------------------------------------------
+ 
+ <br>
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## MOOD ROUTES
 
-## Name
-Choose a self-explaining name for your project.
+- Create a New Mood
+  
+   * URL:     `http://localhost:5000/api/v1/create-mood`,
+   * Method:   `POST`
+   * Request Headers: 
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+-------------------------------------------------------------------------------------------------
+   PARAMETER    | TYPE   | REQUIRED |           DESCRIPTION                                     | 
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+-------------------------------------------------------------------------------------------------
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+  Authorization | String |   yes    |    JWT_TOKEN Obtained From authentication                 |
+-------------------------------------------------------------------------------------------------
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+  * Request Body:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+-------------------------------------------------------------------------------------------------
+   PARAMETER |   TYPE   |  REQUIRED |                            DESCRIPTION                    |
+-------------------------------------------------------------------------------------------------
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+   Note      | String   |  No       |            Mood's Note or any Note                        |
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+   Date      | Date     |  yes      |            Date Of Creating Mood                          |
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+   Mood      | String   |  yes      |            Mood Type (example = 'Happy','Sad')            |
+-------------------------------------------------------------------------------------------------
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+  * Response Body (Success(200 OK)):
 
-## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+-------------------------------------------------------------------------------------------------
+
+   Mood      |     Object         |                New Created Mood                             |
+
+   message   |      String        |          Mood Succesfull Created                            |
+-------------------------------------------------------------------------------------------------
+
+
+  * Response Body (Error):
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+-------------------------------------------------------------------------------------------------
+
+   error     |      String        |    Error Message describing Why The Request Failed          |
+-------------------------------------------------------------------------------------------------
+ 
+ <br>
+
+
+- Get All Moods
+  
+   * URL:     `http://localhost:5000/api/v1/all-moods`,
+   * Method:   `POST`
+   * Request Headers: 
+
+
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER    | TYPE   | REQUIRED |           DESCRIPTION                                     |                  
+-------------------------------------------------------------------------------------------------
+
+  Authorization | String |   yes    |    JWT_TOKEN Obtained From authentication                 |
+-------------------------------------------------------------------------------------------------
+
+
+
+  * Response Body (Success(200 OK)):
+
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+-------------------------------------------------------------------------------------------------
+
+   Moods     |     Object[]       |          Array of All user's Mood                           |
+
+   message   |      String        |         All Moods Succesfull Fetched                        |
+-------------------------------------------------------------------------------------------------
+
+
+  * Response Body (Error):
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+-------------------------------------------------------------------------------------------------
+
+   error     |      String        |    Error Message describing Why The Request Failed          |
+-------------------------------------------------------------------------------------------------
+ 
+ <br>
+
+
+
+- Delete A Mood
+  
+   * URL:     `http://localhost:5000/api/v1/delete-mood/:id`,
+   * Method:   `POST`
+   * Request Headers: 
+
+
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER    | TYPE   | REQUIRED |           DESCRIPTION                                     |                  
+-------------------------------------------------------------------------------------------------
+
+  Authorization | String |   yes    |    JWT_TOKEN Obtained From authentication                 |
+-------------------------------------------------------------------------------------------------
+
+
+
+  * Response Body (Success(200 OK)):
+
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+-------------------------------------------------------------------------------------------------
+
+   message   |      String        |         Mood Deleted Successfully                           |
+-------------------------------------------------------------------------------------------------
+
+
+  * Response Body (Error):
+
+-------------------------------------------------------------------------------------------------
+   PARAMETER |        TYPE        |                  DESCRIPTION                                |
+-------------------------------------------------------------------------------------------------
+
+   error     |      String        |    Error Message describing Why The Request Failed          |
+-------------------------------------------------------------------------------------------------
+ 
+ <br>
+
+

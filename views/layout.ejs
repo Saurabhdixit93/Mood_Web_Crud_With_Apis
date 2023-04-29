@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/d1ecb2e7fa.js" crossorigin="anonymous"></script>
+    <style>
+/* Set the width and height of the scroll bar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Set the background color of the scroll bar */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* Set the color and shape of the scroll bar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <header>
+      <%- include('_header'); %>
+    </header>
+
+    <main id="main-layout">
+        <%- body %>
+    </main>
+
+    <footer>
+        <%- include('_footer'); %>
+    </footer>
+
+    <script>
+        // Get the navbar burger element
+        const navbarBurger = document.querySelector('.navbar-burger');
+        // Get the navbar menu element
+        const navbarMenu = document.querySelector('.navbar-menu');
+        // Add an event listener to the navbar burger
+        navbarBurger.addEventListener('click', () => {
+          // Toggle the "is-active" class on both the navbar burger and the navbar menu
+          navbarBurger.classList.toggle('is-active');
+          navbarMenu.classList.toggle('is-active');
+        });
+      </script>
+</body>
+</html>

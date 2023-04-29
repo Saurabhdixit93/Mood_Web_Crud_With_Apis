@@ -1,0 +1,105 @@
+<title>Home Page | dashboard </title>
+<style>
+    .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .alert.error {
+      background-color: #f44336;
+      color: #fff;
+      border-color: #f5c6cb;
+    }
+    .alert-danger{
+      background-color: #f44336;
+      color: #fff;
+      border-color: #f5c6cb;
+    }
+    .alert[role="alert"] {
+      margin: 0;
+      border-radius: 0;
+      border-width: 0 0 1px 0;
+    }
+    .alert-success{
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+</style>
+<section class="hero is-info is-fullheight">
+    <div>
+        <% if (message.error) { %>
+            <div class="alert alert-danger" id="alert-message" role="alert">
+              <%= message.error[0] %>
+            </div>
+          <% } %>
+          <% if (message.success) { %>
+            <div class="alert alert-success" id="alert-message" role="alert">
+              <%= message.success[0] %>
+            </div>
+          <% } %>
+    </div>
+    <div>
+        <% if ( typeof req.query.msg !=='undefined') { %>
+            <div class="alert error" id="alert-message">
+            <p><%= req.query.msg%></p>
+            </div>
+        <% } %>
+    </div>
+    <div class="hero-body" style="margin-top: -16rem;">
+        <% if(locals.user){%>
+        <div class="container">
+        <h1 class="title">
+            Dashboard
+        </h1>
+        <h2 class="subtitle">
+            Welcome to your dashboard!
+        </h2>
+        <div class="columns">
+            <div class="column">
+            <div class="card">
+                <header class="card-header">
+                <p class="card-header-title">
+                    Moods
+                </p>
+                </header>
+                <div class="card-content">
+                <div class="content">
+                    <p>View and manage your moods.</p>
+                </div>
+                </div>
+                <footer class="card-footer">
+                <a href="/mood/all-moods" class="card-footer-item">Go to Moods</a>
+                </footer>
+            </div>
+            </div>
+            <%}%>
+            <% if(!locals.user){%>
+            <div class="column">
+                <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                    Register/Login
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                    <p>Register or login to your account.</p>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="/register" class="card-footer-item">Register</a>
+                    <a href="/login" class="card-footer-item">Login</a>
+                </footer>
+                </div>
+            </div>
+            <%}%>
+        </div>
+        </div>
+    </div>
+</section>
+<script>
+    setTimeout(()=>{
+        document.getElementById('alert-message').style.display = 'none';
+    },5000);
+</script>
